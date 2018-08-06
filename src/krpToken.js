@@ -1,5 +1,3 @@
-import web3 from './web3';
-
 const abi = [
     {
         "anonymous": false,
@@ -458,5 +456,5 @@ const abi = [
 ];
 const address = '0xa483f836f51aaae49a03b7f4a5015481003627f7';
 
-export default new web3.eth.Contract(abi, address);
+module.exports = {address, abi};
 
