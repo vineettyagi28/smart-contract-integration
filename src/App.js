@@ -45,10 +45,10 @@ class App extends Component {
 
         if (this.state.isMetaMask) {
 
-            krpTokenContract = new web3.eth.Contract(krpToken.abi, krpToken.address);
-            const tokenOwner = await krpTokenContract.methods.owner().call();
+            //krpTokenContract = new web3.eth.Contract(krpToken.abi, krpToken.address);
+            //const tokenOwner = await krpTokenContract.methods.owner().call();
 
-            icoManagerContract = new web3.eth.Contract(ICOManager.abi, ICOManager.address);
+            //icoManagerContract = new web3.eth.Contract(ICOManager.abi, ICOManager.address);
 
             auctionContract = new web3.eth.Contract(Auction.abi, Auction.address);
 
@@ -221,9 +221,9 @@ class App extends Component {
     };
 
     claimRefunds = async (event) => {
-        event.preventDefault();
-
         const accounts = await web3.eth.getAccounts();
+
+        event.preventDefault();
 
         this.setState({message2: 'Claiming refunds...'});
 
@@ -270,6 +270,22 @@ class App extends Component {
         } catch (err) {
             console.log(err);
             this.setState({message2: 'Error in fetching current price'});
+        }
+    };
+
+    offering = async (event) => {
+        event.preventDefault();
+
+        const accounts = await web3.eth.getAccounts();
+
+        this.setState({message2: 'Fetching initial offering...'});
+
+        try {
+            const response = await auctionContract.methods.initial_offering().call();
+            this.setState({message2: 'Fetched initial offering successfully : ' + response});
+        } catch (err) {
+            console.log(err);
+            this.setState({message2: 'Error in fetching initial offering'});
         }
     };
 
@@ -422,6 +438,13 @@ class App extends Component {
 
 
                         <Button bsSize="large" bsStyle="warning" onClick={this.claimTokens}>Claim Tokens</Button>
+
+                        <br/><br/>
+
+                        <hr width="100"/>
+
+
+                        <Button bsSize="large" bsStyle="info" onClick={this.offering}>Initial Offering</Button>
 
                         <br/><br/>
 

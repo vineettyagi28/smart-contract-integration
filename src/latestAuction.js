@@ -15,6 +15,20 @@ const abi = [
     },
     {
         "constant": true,
+        "inputs": [],
+        "name": "totalTokensInBid",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
         "inputs": [
             {
                 "name": "",
@@ -90,6 +104,20 @@ const abi = [
     },
     {
         "constant": false,
+        "inputs": [
+            {
+                "name": "_amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferWeiToOwner",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
         "inputs": [],
         "name": "transferBack",
         "outputs": [],
@@ -138,15 +166,15 @@ const abi = [
         "constant": true,
         "inputs": [
             {
-                "name": "price",
-                "type": "uint256"
+                "name": "bidder",
+                "type": "address"
             }
         ],
-        "name": "getPreBidders",
+        "name": "noOfBids",
         "outputs": [
             {
                 "name": "",
-                "type": "address[]"
+                "type": "uint256"
             }
         ],
         "payable": false,
@@ -157,43 +185,15 @@ const abi = [
         "constant": true,
         "inputs": [
             {
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "bids",
-        "outputs": [
-            {
                 "name": "price",
                 "type": "uint256"
-            },
+            }
+        ],
+        "name": "getPreBidders",
+        "outputs": [
             {
-                "name": "value",
-                "type": "uint256"
-            },
-            {
-                "name": "placed",
-                "type": "bool"
-            },
-            {
-                "name": "claimed",
-                "type": "bool"
-            },
-            {
-                "name": "absentee",
-                "type": "bool"
-            },
-            {
-                "name": "useWholeAmount",
-                "type": "bool"
-            },
-            {
-                "name": "numOfToken",
-                "type": "uint256"
-            },
-            {
-                "name": "sender",
-                "type": "address"
+                "name": "",
+                "type": "bytes32[]"
             }
         ],
         "payable": false,
@@ -207,6 +207,20 @@ const abi = [
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "intervalCountdown",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -238,6 +252,20 @@ const abi = [
         "outputs": [],
         "payable": true,
         "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getContractBalance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -286,6 +314,20 @@ const abi = [
         "constant": true,
         "inputs": [],
         "name": "interval_start_time",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "price_change",
         "outputs": [
             {
                 "name": "",
@@ -367,12 +409,50 @@ const abi = [
         "type": "function"
     },
     {
-        "constant": false,
-        "inputs": [],
-        "name": "transferWeiToOwner",
-        "outputs": [],
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "name": "bids",
+        "outputs": [
+            {
+                "name": "price",
+                "type": "uint256"
+            },
+            {
+                "name": "value",
+                "type": "uint256"
+            },
+            {
+                "name": "placed",
+                "type": "bool"
+            },
+            {
+                "name": "claimed",
+                "type": "bool"
+            },
+            {
+                "name": "absentee",
+                "type": "bool"
+            },
+            {
+                "name": "useWholeAmount",
+                "type": "bool"
+            },
+            {
+                "name": "numOfToken",
+                "type": "uint256"
+            },
+            {
+                "name": "sender",
+                "type": "address"
+            }
+        ],
         "payable": false,
-        "stateMutability": "nonpayable",
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -383,6 +463,25 @@ const abi = [
             {
                 "name": "",
                 "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "bidder",
+                "type": "address"
+            }
+        ],
+        "name": "getBidHashes",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bytes32[]"
             }
         ],
         "payable": false,
@@ -608,6 +707,10 @@ const abi = [
                 "type": "uint256"
             },
             {
+                "name": "_priceChange",
+                "type": "uint256"
+            },
+            {
                 "name": "_minimumBid",
                 "type": "uint256"
             },
@@ -788,6 +891,6 @@ const abi = [
         "type": "event"
     }
 ];
-const address = '0xBbEf84ba51c2fc83315B806C03DfCA8dD2722560';
+const address = '0x12ee3B5D663C2BfFaf166126C2E8E944DB4cDeD8';
 
 module.exports = {abi, address};
